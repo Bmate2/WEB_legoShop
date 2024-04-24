@@ -14,9 +14,10 @@ class Lego extends Model
         "price",
         "pieces",
         "category_id",
-        "image",
     ];
     public function Category(){
         return $this->belongsTo(Category::class);
     }
+    
+    
 }

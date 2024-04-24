@@ -121,11 +121,11 @@
                     </select>
                     <i></i>
                 </div>
-                <div class="inputBox">
+                <!-- <div class="inputBox">
                     <label for="image">Képfeltöltés</label>
                     <input type="file" name="image" accept="image/*" required>
                     <i></i>
-                </div>
+                </div> -->
 
                 <input type="submit" value="Add Set">
             </form>

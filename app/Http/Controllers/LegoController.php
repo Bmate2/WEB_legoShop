@@ -42,9 +42,7 @@ class LegoController extends Controller
             'price' => 'required|numeric|min:0',
             'pieces' => 'required|integer|min:0',
             'category' => 'required',
-            'image' => 'required',
         ]);
-        $imagePath = $request->file('image')->store('lego_images', 'public');
 
 
         Lego::create([
@@ -53,7 +51,6 @@ class LegoController extends Controller
             'price' => $request->price,
             'pieces' => $request->pieces,
             'category_id' => $request->category,
-            'image' => $imagePath,
         ]);
 
         return redirect()->route('all_lego');

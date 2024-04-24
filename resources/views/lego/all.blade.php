@@ -40,7 +40,7 @@
 @foreach($lego as $value)
 <div class="card w-100 mb-3">
     <div class="card-body">
-        <img src="{{ asset($value->image) }}" alt="{{ $value->name }}" class="img-fluid mb-3">
+        <!-- <img src="{{ asset($value->image) }}" alt="{{ $value->name }}" class="img-fluid mb-3"> -->
         <h2 class="card-title">{{$value->name}}</h2>
         <p class="card-text">{{$value->category->name}}</p>
         <p class="card-text">{{$value->price}} Ft</p>

@@ -1,0 +1,1 @@
+<h1>Nem talált pajtikám</h1>

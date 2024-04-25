@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('review_ratings', function (Blueprint $table) {
             $table->id();
-            $table->integer('legoId');
-            $table->integer('star_rating');
+            $table->foreignId('legoId');
+            $table->integer('rating');
+            $table->string('comment')->nullable();
+            $table->foreignId('userId');
             $table->timestamps();
         });
     }

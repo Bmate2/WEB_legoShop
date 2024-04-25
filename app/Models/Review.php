@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Review extends Model
 {
     use HasFactory;
+    protected $fillable=['legoId','rating','comment','userId'];
+    protected $table='review_ratings';
+
     public function Lego(){
-        return $this->belongsTo(Lego::class);
+        return $this->belongsToMany(Lego::class,'legoId');
+    }
+    public function User(){
+        return $this->belongsTo(User::class,'userId');
     }
 }

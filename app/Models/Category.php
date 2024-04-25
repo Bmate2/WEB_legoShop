@@ -11,4 +11,7 @@ class Category extends Model
     protected $fillable=[
         "name"
     ];
+    public function Lego(){
+        return $this->belongsTo(Lego::class);
+    }
 }

@@ -18,6 +18,23 @@ class Lego extends Model
     public function Category(){
         return $this->belongsTo(Category::class);
     }
+
+    public function Review(){
+        return $this->hasMany(Review::class,"legoId","id");
+    }
+
+    public function getRatingAttribute() {
+        $rating=$this->review;
+        $avarage=0;
+        foreach($rating as $rate){
+            $avarage+=$rate->rating;
+        }
+        if($avarage==0 || $rating->Count()==0){
+            return 0;
+        }
+        $avarage=$avarage/$rating->Count();
+        return round($avarage,2);
+    }
     
     
 }

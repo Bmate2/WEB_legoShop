@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lego;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,24 +21,23 @@ class ReviewController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $review = Review::where("userId",Auth::user()->id)->where("legoId",$request->code)->first();
+        if($review==null){
+        $rating = new Review($request->except('_token'));
+        $rating->legoId=$request->code;
+        $rating->userId=Auth::user()->id;
+        $rating->save();
+        $lego=Lego::find($request->code);
+        return response()->json(["success"=>true,"rating"=>$lego->rating]);
+        }
+        return response()->json(["success"=>false]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function reviewstore(Request $request){
-        $review = new Review();
-        $review->booking_id = $request->booking_id;
-        $review->comments= $request->comment;
-        $review->star_rating = $request->rating;
-        $review->user_id = Auth::user()->id;
-        $review->service_id = $request->service_id;
-        $review->save();
-        return redirect()->back()->with('flash_msg_success','Your review has been submitted Successfully,');
-    }
 
     /**
      * Display the specified resource.

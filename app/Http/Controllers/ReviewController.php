@@ -24,14 +24,18 @@ class ReviewController extends Controller
     public function create(Request $request)
     {
         $review = Review::where("userId",Auth::user()->id)->where("legoId",$request->code)->first();
+        
         if($review==null){
-        $rating = new Review($request->except('_token'));
-        $rating->legoId=$request->code;
-        $rating->userId=Auth::user()->id;
-        $rating->save();
-        $lego=Lego::find($request->code);
-        return response()->json(["success"=>true,"rating"=>$lego->rating]);
+            $rating = new Review($request->except('_token'));
+            $rating->legoId=$request->code;
+            $rating->userId=Auth::user()->id;
+            $rating->save();
+            
+            $lego=Lego::find($request->code);
+            
+            return response()->json(["success"=>true,"rating"=>$lego->rating]);
         }
+        
         return response()->json(["success"=>false]);
     }
 
